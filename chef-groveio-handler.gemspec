@@ -13,8 +13,8 @@ Gem::Specification.new do |s|
   ## If your rubyforge_project name is different, then edit it and comment out
   ## the sub! line in the Rakefile
   s.name              = 'chef-groveio-handler'
-  s.version           = '0.0.1'
-  s.date              = '2012-01-15'
+  s.version           = '0.0.2'
+  s.date              = '2012-04-07'
   s.rubyforge_project = 'chef-groveio-handler'
 
   ## Make sure your summary is short. The description may be as long

@@ -5,7 +5,7 @@ require 'net/https'
 require 'uri'
 
 class ChefGroveIOHandler < Chef::Handler
-  VERSION = '0.0.1'
+  VERSION = '0.0.2'
 
   def initialize(url_hash)
     @url = "https://grove.io/api/notice/#{url_hash}/"
@@ -16,7 +16,7 @@ class ChefGroveIOHandler < Chef::Handler
 
     # build the message
     status = failed? ? "failed" : "succeeded"
-    message = "Chef run on #{node} has #{status}."
+    message = "chef-client run on #{node[:fqdn]} has #{status}."
 
     # notify stdout and via log.error if we have a terminal
     unless STDOUT.tty?
@@ -27,7 +27,7 @@ class ChefGroveIOHandler < Chef::Handler
           http.use_ssl = true
 
           request = Net::HTTP::Post.new(uri.request_uri)
-          request.set_form_data({"service" => "ChefReport", "message" => message})
+          request.set_form_data({"service" => "Chef", "message" => message})
 
           response = http.request(request)
           Chef::Log.info("Notified chefs via grove.io")
